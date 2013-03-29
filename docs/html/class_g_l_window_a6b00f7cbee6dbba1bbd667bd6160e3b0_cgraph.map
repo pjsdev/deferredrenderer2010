@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_frame_buffer_object.html#aa268a7f9e570d1e93edc52933293ddaf" title="acivates 4 targets for drawing" alt="" coords="229,5,472,35"/>
+<area shape="rect" id="node5" href="$class_frame_buffer_object.html#aee2cd38309ec8a41a57af7b910f99b5d" title="make this FBO the active one for drawing" alt="" coords="269,58,432,89"/>
+<area shape="rect" id="node7" href="$class_frame_buffer_object.html#acfac55df0d351f216e7dc91d633f0f7f" title="make the default (screen) FBO active" alt="" coords="263,111,439,142"/>
+</map>

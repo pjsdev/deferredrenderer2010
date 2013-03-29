@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_frame_buffer_object.html#ad5fb62e46970c0f264941a58a33a53c7" title="acivate a render target of your choice, starting from 0" alt="" coords="219,5,440,35"/>
+<area shape="rect" id="node5" href="$class_frame_buffer_object.html#aee2cd38309ec8a41a57af7b910f99b5d" title="make this FBO the active one for drawing" alt="" coords="248,58,411,89"/>
+<area shape="rect" id="node7" href="$class_shadow_spot.html#ab9b25fb0cbf92d2863ff9a85a92bcd5a" title="return the light projection matrix" alt="" coords="257,111,401,142"/>
+<area shape="rect" id="node9" href="$class_lighting_manager.html#ae16aa95d3eaaca7d98bd820d6c41f10c" title="access shadowspot by id" alt="" coords="221,165,437,195"/>
+<area shape="rect" id="node11" href="$class_frame_buffer_object.html#acfac55df0d351f216e7dc91d633f0f7f" title="make the default (screen) FBO active" alt="" coords="241,218,417,249"/>
+</map>

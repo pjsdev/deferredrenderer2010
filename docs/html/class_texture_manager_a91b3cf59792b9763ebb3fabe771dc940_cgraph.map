@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_texture_manager.html#a697cae0804a775bc694ff143febeca58" title="add a texture object" alt="" coords="235,5,421,35"/>
+<area shape="rect" id="node7" href="$class_texture.html#a753532e225cf6aecafcf1e628e302e2f" title="generate empty RGBA" alt="" coords="248,58,408,89"/>
+<area shape="rect" id="node5" href="$class_texture.html#a352ad6a6a3e6d7a7226d95b7612e5d24" title="get the texture by name" alt="" coords="469,5,595,35"/>
+</map>

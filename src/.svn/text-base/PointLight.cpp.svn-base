@@ -1,0 +1,86 @@
+#include "PointLight.h"
+#include "ngl/ShaderManager.h"
+#include "ngl/Types.h"
+#include "ngl/TransformStack.h"
+#include "ngl/VBOPrimitives.h"
+
+#ifdef DARWIN
+  #define glGenVertexArrays glGenVertexArraysAPPLE
+  #define glBindVertexArray glBindVertexArrayAPPLE
+#endif
+
+PointLight::PointLight(){}
+PointLight::PointLight(const float &_x,const float &_y,const float &_z,const float &_radius, const ngl::Vector &_intensity)
+{
+    m_pos.set(_x,_y,_z);
+    m_radius = _radius;
+    m_intensity = _intensity;
+}
+PointLight::~PointLight(){}
+
+void PointLight::draw()
+{
+    ngl::VBOPrimitives *prim = ngl::VBOPrimitives::instance();
+    prim->draw("sphere");
+
+    ngl::ShaderManager *shader = ngl::ShaderManager::instance();
+    shader->setShaderParam3f("PointLight",
+                             "uIntensity",
+                             m_intensity.m_x,
+                             m_intensity.m_y,
+                             m_intensity.m_z);
+
+    shader->setShaderParam4f("PointLight",
+                             "uCentreRadius",
+                             m_pos.m_x,
+                             m_pos.m_y,
+                             m_pos.m_z,
+                             m_radius
+                             );
+
+    // now we bind back our vertex array object and draw
+    glBindVertexArray(m_vaoID);		// select first VAO
+
+    glDrawArrays(GL_QUADS, 0, 24);	// draw first object
+
+     //go back to default just incase
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(0);
+}
+
+void PointLight::generateVAO()
+{
+
+
+       // vertex coords array
+      GLfloat vertices[] = {
+          1, 1, 1, -1, 1, 1, -1,-1, 1, 1,-1, 1, // v0-v1-v2-v3
+          1, 1, 1, 1,-1, 1, 1,-1,-1, 1, 1,-1, // v0-v3-v4-v
+          1, 1, 1, 1, 1,-1, -1, 1,-1, -1, 1, 1, // v0-v5-v6-v
+          -1, 1, 1, -1, 1,-1, -1,-1,-1, -1,-1, 1, // v1-v6-v7-v
+          -1,-1,-1, 1,-1,-1, 1,-1, 1, -1,-1, 1, // v7-v4-v3-v
+          1,-1,-1, -1,-1,-1, -1, 1,-1, 1, 1,-1 // v4-v7-v6-v5
+      };
+
+      // first we create a vertex array Object
+      glGenVertexArrays(1, &m_vaoID);
+
+        // now bind this to be the currently active one
+      glBindVertexArray(m_vaoID);
+        // as they will be associated with the vertex array object
+      GLuint vboID;
+      glGenBuffers(1, &vboID);
+      // now we will bind an array buffer to the first one and load the data for the verts
+      glBindBuffer(GL_ARRAY_BUFFER, vboID);
+      glBufferData(GL_ARRAY_BUFFER, 24*3*sizeof(GLfloat), vertices, GL_STATIC_DRAW);
+      // now we bind the vertex attribute pointer for this object in this case the
+      // vertex data
+      ngl::ShaderManager *shader=ngl::ShaderManager::instance();
+      (*shader)["PointLight"]->vertexAttribPointer("aVertexPosition",3,GL_FLOAT,0,0);
+      (*shader)["PointLight"]->enableAttribArray("aVertexPosition");
+
+      // finally switch back to the default so we don't overwrite
+      glEnableVertexAttribArray(0);
+      glBindVertexArray(0);
+
+}

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_texture_manager.html#a904d15f91367c212278f8d6aa1f45b3e" title="bind texture by name" alt="" coords="304,5,493,35"/>
+<area shape="rect" id="node5" href="$class_lighting_manager.html#a5293d2ec7425685a32e2fcf779769d5b" title="blend point lights onto scene" alt="" coords="289,58,508,89"/>
+<area shape="rect" id="node7" href="$class_lighting_manager.html#a97889bbcc39fc6ea97042b38a3e4d1bc" title="blend shadowspots onto scene" alt="" coords="281,111,516,142"/>
+<area shape="rect" id="node9" href="$class_lighting_manager.html#a56e0aea7dbd85d87e0e9575df8f7a645" title="blend spots onto scene" alt="" coords="289,165,508,195"/>
+</map>

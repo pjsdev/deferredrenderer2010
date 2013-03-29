@@ -1,0 +1,69 @@
+uniform sampler2D Normal;
+uniform sampler2D Albedo;
+uniform sampler2D Specular;
+
+//intensity xyz radius w
+uniform vec3 uIntensity;
+
+varying vec4 vProjSpacePos;
+varying mat4 vProjView;
+varying vec4 vCentreRadius;
+
+
+//
+
+
+void main()
+{
+    ///////////////////////////////////////////////
+    //Get our samples
+
+    //convert from proj space to texture space
+    vec2 pixelPos = vProjSpacePos.xy / vProjSpacePos.w;
+    pixelPos = (pixelPos*0.5) + 0.5;
+
+    // normal xyz depth z
+    vec4 normalSample = texture2D(Normal, pixelPos);
+    vec3 normal = (vec3( normalSample.xyz )*2.0)-1.0;
+    float depth = 1.0-normalSample.w;
+
+    //albedo xyz
+    vec4 albedo = texture2D(Albedo, pixelPos);
+
+    //specular xyz
+    vec4 specular = texture2D(Specular, pixelPos);
+
+    ///////////////////////////////////////////////
+
+    //Centre in World Space
+    vec3 centre = vCentreRadius.xyz;
+    float radiusSq = vCentreRadius.w*vCentreRadius.w;
+
+    //for getting back into world space
+    //mat4 invProjView = inverse(vProjView);
+
+    vec3 L = normalize( vec3(-1,0,0) );
+
+    float nDotL = dot(normal, -L);
+
+    gl_FragColor = nDotL*(vec4(albedo.xyz,1) * vec4(uIntensity,1));
+}
+
+    //position xyz
+    //vec4 position = invProjView * vec4(pixelPos,depth,1.0);
+
+    //get position of frag in world space
+    //vec4 lightPos = invProjView * vProjSpacePos;
+
+    //vec3 invI = lightPos.xyz-position.xyz;
+
+    //float length = length(invI);
+    //float lengthSquared = length*length;
+
+    //float lightingFac = 0.0;//dot(normal.xyz, rayToLight.xyz);
+
+    //THIS CONDITION IS NEVER BEING MET
+    //if(lengthSquared < radiusSquared)
+    //{
+        //lightingFac = clamp(dot(normal.xyz, normalize(invI)),0.0,1.0);
+    //}

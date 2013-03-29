@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_texture_manager.html#a91b3cf59792b9763ebb3fabe771dc940" title="add empty rgba texture" alt="" coords="229,109,411,139"/>
+<area shape="rect" id="node5" href="$class_texture_manager.html#a697cae0804a775bc694ff143febeca58" title="add a texture object" alt="" coords="461,58,648,89"/>
+<area shape="rect" id="node9" href="$class_texture.html#a753532e225cf6aecafcf1e628e302e2f" title="generate empty RGBA" alt="" coords="475,135,635,166"/>
+<area shape="rect" id="node11" href="$class_texture_manager.html#a7a8f45aa0f3a12252feb97e74e9c0b0e" title="add empty float texture" alt="" coords="228,5,412,35"/>
+<area shape="rect" id="node7" href="$class_texture.html#a352ad6a6a3e6d7a7226d95b7612e5d24" title="get the texture by name" alt="" coords="696,58,821,89"/>
+<area shape="rect" id="node14" href="$class_texture.html#a70d256a139b0e9fe1ed631dbf1fe9d50" title="generate empty RGAB (32bit float)" alt="" coords="473,5,636,35"/>
+</map>

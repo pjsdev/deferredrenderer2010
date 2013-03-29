@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_frame_buffer_object.html#ad5fb62e46970c0f264941a58a33a53c7" title="acivate a render target of your choice, starting from 0" alt="" coords="223,5,444,35"/>
+<area shape="rect" id="node5" href="$class_frame_buffer_object.html#ac4addd06c2efb40175c0b3cb515c2174" title="bind a texture id to an FBO color attachment" alt="" coords="219,58,448,89"/>
+<area shape="rect" id="node7" href="$class_screen_quad.html#a5471105545cef6596311a9b55d218ec9" title="draw the quad" alt="" coords="269,111,397,142"/>
+</map>

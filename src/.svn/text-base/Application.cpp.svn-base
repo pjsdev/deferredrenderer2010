@@ -1,0 +1,29 @@
+#include "include/Application.h"
+#include "ui_Application.h"
+
+Application::Application(QWidget *parent) :
+    QMainWindow(parent),
+    m_ui(new Ui::Application)
+{
+    m_ui->setupUi(this);
+    m_gl = new GLWindow(this);
+    m_ui->s_ApplicationGridLayout->addWidget(m_gl,0,0,2,1);
+    connect(m_ui->m_wireFrame,SIGNAL(toggled(bool)),m_gl,SLOT(toggleWireframe(bool)));
+    //connect(m_ui->m_objectSelection,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(changeObject(int)));
+}
+
+void Application::keyPressEvent(
+                               QKeyEvent *_event
+                              )
+{
+  switch (_event->key())
+  {
+  case Qt::Key_Escape : QApplication::exit(EXIT_SUCCESS); break;
+  default : break;
+  }
+}
+
+Application::~Application()
+{
+    delete m_ui;
+}

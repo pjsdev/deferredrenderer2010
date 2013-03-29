@@ -1,0 +1,27 @@
+#ifndef APPLICATION_H
+#define APPLICATION_H
+
+#include <QMainWindow>
+#include "GLWindow.h"
+
+namespace Ui {
+    class Application;
+}
+
+class Application : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit Application(QWidget *parent = 0);
+    ~Application();
+
+private:
+    void keyPressEvent(QKeyEvent *);
+    Ui::Application *m_ui;
+
+    /// @brief out opengl window
+    GLWindow *m_gl;
+};
+
+#endif // APPLICATION_H

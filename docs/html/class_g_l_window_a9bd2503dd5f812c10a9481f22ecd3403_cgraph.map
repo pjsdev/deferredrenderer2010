@@ -1,0 +1,29 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_g_l_window.html#a126c8861e80c340cabd4f6bfbc3de28d" title="debug pass for drawing our debug quads" alt="" coords="473,5,628,35"/>
+<area shape="rect" id="node7" href="$class_screen_quad.html#a5471105545cef6596311a9b55d218ec9" title="draw the quad" alt="" coords="753,55,881,86"/>
+<area shape="rect" id="node10" href="$class_frustum.html#abeca2d18ad72313d7fbef39c2cf037f0" title="method to generate the frustum from a projView matrix" alt="" coords="235,109,360,139"/>
+<area shape="rect" id="node16" href="$class_g_l_window.html#a6b00f7cbee6dbba1bbd667bd6160e3b0" title="geometry for main gbuffer" alt="" coords="464,247,637,278"/>
+<area shape="rect" id="node24" href="$class_shadow_spot.html#ab9b25fb0cbf92d2863ff9a85a92bcd5a" title="return the light projection matrix" alt="" coords="225,213,369,243"/>
+<area shape="rect" id="node26" href="$class_lighting_manager.html#ae16aa95d3eaaca7d98bd820d6c41f10c" title="access shadowspot by id" alt="" coords="189,266,405,297"/>
+<area shape="rect" id="node28" href="$class_g_l_window.html#a6b9eeac15141cd01e99f89209654e86d" title="accumulate light onto our pixels" alt="" coords="453,419,648,450"/>
+<area shape="rect" id="node49" href="$class_g_l_window.html#a6245dfad71c8ea6c279ef11feb740335" title="run the post processing chain" alt="" coords="216,319,379,350"/>
+<area shape="rect" id="node63" href="$class_g_l_window.html#a7b896ef064ac5793ad8c7292653968a6" title="setup shader uniforms for post process" alt="" coords="189,423,405,454"/>
+<area shape="rect" id="node5" href="$class_texture_manager.html#a904d15f91367c212278f8d6aa1f45b3e" title="bind texture by name" alt="" coords="1011,150,1200,181"/>
+<area shape="rect" id="node12" href="$class_frustum.html#a3c514a0880e09ae6df9632dbbfd46543" title="build a plane" alt="" coords="483,109,619,139"/>
+<area shape="rect" id="node14" href="$class_frustum.html#a7c18fdcda4bd3684ac1ef9b7903ddb4d" title="normalise the plane" alt="" coords="735,109,900,139"/>
+<area shape="rect" id="node18" href="$class_frame_buffer_object.html#aa268a7f9e570d1e93edc52933293ddaf" title="acivates 4 targets for drawing" alt="" coords="696,215,939,246"/>
+<area shape="rect" id="node20" href="$class_frame_buffer_object.html#aee2cd38309ec8a41a57af7b910f99b5d" title="make this FBO the active one for drawing" alt="" coords="736,375,899,406"/>
+<area shape="rect" id="node22" href="$class_frame_buffer_object.html#acfac55df0d351f216e7dc91d633f0f7f" title="make the default (screen) FBO active" alt="" coords="729,322,905,353"/>
+<area shape="rect" id="node30" href="$class_lighting_manager.html#a72142eac3b58b2f3d98d3a93cfe056c8" title="main update call to accumulate lights to scene" alt="" coords="704,429,931,459"/>
+<area shape="rect" id="node39" href="$class_frame_buffer_object.html#ad5fb62e46970c0f264941a58a33a53c7" title="acivate a render target of your choice, starting from 0" alt="" coords="707,269,928,299"/>
+<area shape="rect" id="node42" href="$_n_g_l_math_8cpp.html#a893053e5b505aeb4d309cf1ae85a2fa9" title="the inverse of a matrix" alt="" coords="785,509,849,539"/>
+<area shape="rect" id="node33" href="$class_lighting_manager.html#a5293d2ec7425685a32e2fcf779769d5b" title="blend point lights onto scene" alt="" coords="996,349,1215,379"/>
+<area shape="rect" id="node35" href="$class_lighting_manager.html#a97889bbcc39fc6ea97042b38a3e4d1bc" title="blend shadowspots onto scene" alt="" coords="988,402,1223,433"/>
+<area shape="rect" id="node37" href="$class_lighting_manager.html#a56e0aea7dbd85d87e0e9575df8f7a645" title="blend spots onto scene" alt="" coords="996,455,1215,486"/>
+<area shape="rect" id="node44" href="$_n_g_l_math_8cpp.html#aa6399224345b43513d292b49dc173973" title="calculated adjoint of matrix" alt="" coords="1085,509,1125,539"/>
+<area shape="rect" id="node46" href="$_n_g_l_math_8cpp.html#a89bf821ad63703f24c952c3dab9d6787" title="calculated determinant of matrix" alt="" coords="1084,562,1127,593"/>
+<area shape="rect" id="node51" href="$class_post_processor.html#a445bb97f92ec17ebea6aab1cacdae848" title="explcict call to invoke effect" alt="" coords="469,169,632,199"/>
+<area shape="rect" id="node57" href="$class_post_processor.html#a7657501677cd154cbb8ec28f1f7cac9f" title="end the postprocessor" alt="" coords="477,313,624,343"/>
+<area shape="rect" id="node60" href="$class_post_processor.html#a6e904f5208a57571604a58ae70e4c431" title="start the postprocess chain" alt="" coords="480,366,621,397"/>
+<area shape="rect" id="node54" href="$class_frame_buffer_object.html#ac4addd06c2efb40175c0b3cb515c2174" title="bind a texture id to an FBO color attachment" alt="" coords="703,162,932,193"/>
+</map>

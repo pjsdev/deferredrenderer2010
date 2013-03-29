@@ -1,0 +1,19 @@
+//centre xy depth z extent w
+uniform vec4 uCentreDepthExtent;
+
+attribute vec3 aVertexPosition;
+attribute vec2 aTextureCoord;
+
+varying vec2 vTextureCoord;
+
+void main(void)
+{
+    vTextureCoord = aTextureCoord;
+
+    vec2  centre = uCentreDepthExtent.xy;
+    float extent = uCentreDepthExtent.w;
+    float depth  = uCentreDepthExtent.z;
+
+    vec2 ssPos = (aVertexPosition.xy*extent)+centre;
+    gl_Position = vec4(ssPos.x, ssPos.y, depth, 1);//gl_Vertex;
+}

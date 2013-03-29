@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_lighting_manager.html#a72142eac3b58b2f3d98d3a93cfe056c8" title="main update call to accumulate lights to scene" alt="" coords="272,5,499,35"/>
+<area shape="rect" id="node5" href="$class_g_l_window.html#a6b9eeac15141cd01e99f89209654e86d" title="accumulate light onto our pixels" alt="" coords="547,5,741,35"/>
+<area shape="rect" id="node7" href="$class_g_l_window.html#a9bd2503dd5f812c10a9481f22ecd3403" title="this is the main gl drawing routine" alt="" coords="789,5,925,35"/>
+</map>

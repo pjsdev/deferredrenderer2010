@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_post_processor.html#a3bb9b2c72ece1cc7225303521d4266cc" title="add a user effect to the post process chain" alt="" coords="265,5,436,35"/>
+<area shape="rect" id="node5" href="$class_effect.html#a9c82db7d20957d8e615e43b70ff0ce90" title="add a source texture to samples from" alt="" coords="265,58,436,89"/>
+<area shape="rect" id="node7" href="$class_texture_manager.html#a2b773dbc1a105ebf2ff4df0a393ee352" title="get texture ID by" alt="" coords="253,111,448,142"/>
+</map>

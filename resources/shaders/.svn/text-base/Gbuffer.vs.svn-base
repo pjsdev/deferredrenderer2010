@@ -1,0 +1,23 @@
+/// @brief our projection matrix generated from the Camera
+uniform mat4 ProjectionMatrix;
+/// @brief our ViewMatrix generated from the Camera
+uniform mat4 ViewMatrix;
+/// @brief our ModelMatrix generated from our transforms
+uniform mat4 ModelMatrix;
+
+varying vec3 vFragmentNormal;
+varying vec4 vPosition;
+
+void main(void)
+{
+    mat4 transform = ProjectionMatrix * ViewMatrix * ModelMatrix;
+
+    //used if we had glsl >1.5
+    //mat4 NormalMatrix = transpose(inverse(ModelMatrix));
+
+    vec4 position = transform*gl_Vertex;
+    gl_Position = position;
+
+    vPosition = position;
+    vFragmentNormal = (ModelMatrix*vec4(gl_Normal, 0.0)).xyz;
+}

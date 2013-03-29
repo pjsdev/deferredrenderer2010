@@ -1,0 +1,90 @@
+#include "ScreenQuad.h"
+#include "ngl/ShaderManager.h"
+#include "ngl/Types.h"
+#include "ngl/TransformStack.h"
+
+#ifdef DARWIN
+  #define glGenVertexArrays glGenVertexArraysAPPLE
+  #define glBindVertexArray glBindVertexArrayAPPLE
+#endif
+
+ScreenQuad::ScreenQuad(){}
+ScreenQuad::ScreenQuad(const float &_x,const float &_y,const float &_depth,const float &_extent)
+{
+    m_x = _x;
+    m_y = _y;
+    m_depth = _depth;
+    m_extent = _extent;
+}
+ScreenQuad::~ScreenQuad(){}
+
+void ScreenQuad::draw(const std::string &_shaderName)
+{
+
+
+
+    ngl::ShaderManager *shader = ngl::ShaderManager::instance();
+    shader->setShaderParam4f(_shaderName, "uCentreDepthExtent",
+                             m_x,
+                             m_y,
+                             m_depth,
+                             m_extent);
+
+    // now we bind back our vertex array object and draw
+    glBindVertexArray(m_vaoID);		// select first VAO
+
+    glDrawArrays(GL_QUADS, 0, 4);	// draw first object
+
+    // go back to default just incase
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(0);
+}
+
+void ScreenQuad::generateVAO()
+{   
+       // vertex coords array
+      GLfloat vertices[] = {
+          -1.0, -1.0, 0.0,
+          1.0, -1.0, 0.0,
+          1.0, 1.0, 0.0,
+          -1.0, 1.0, 0.0  // v0-v1-v2-v3
+      };
+
+      GLfloat texture[] = {
+          0,0,
+          1,0,
+          1,1,
+          0,1  // v0-v1-v2-v3
+      };
+
+        // first we create a vertex array Object
+      glGenVertexArrays(1, &m_vaoID);
+
+        // now bind this to be the currently active one
+      glBindVertexArray(m_vaoID);
+        // now we create two VBO's one for each of the objects these are only used here
+        // as they will be associated with the vertex array object
+      GLuint vboID[2];
+      glGenBuffers(2, &vboID[0]);
+      // now we will bind an array buffer to the first one and load the data for the verts
+      glBindBuffer(GL_ARRAY_BUFFER, vboID[0]);
+      glBufferData(GL_ARRAY_BUFFER, 4*3*sizeof(GLfloat), vertices, GL_STATIC_DRAW);
+      // now we bind the vertex attribute pointer for this object in this case the
+      // vertex data
+      ngl::ShaderManager *shader=ngl::ShaderManager::instance();
+      (*shader)["ScreenQuad"]->vertexAttribPointer("aVertexPosition",3,GL_FLOAT,0,0);
+      (*shader)["ScreenQuad"]->enableAttribArray("aVertexPosition");
+
+        // now we repeat for the UV data using the second VBO
+      glBindBuffer(GL_ARRAY_BUFFER, vboID[1]);
+      glBufferData(GL_ARRAY_BUFFER, 4*2*sizeof(GLfloat), texture, GL_STATIC_DRAW);
+        // now bind
+      (*shader)["ScreenQuad"]->vertexAttribPointer("aTextureCoord",2,GL_FLOAT,0,0);
+      (*shader)["ScreenQuad"]->enableAttribArray("aTextureCoord");
+        // finally switch back to the default so we don't overwrite
+      glEnableVertexAttribArray(0);
+      glBindVertexArray(0);
+
+
+
+}

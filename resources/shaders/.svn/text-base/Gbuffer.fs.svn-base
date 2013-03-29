@@ -1,0 +1,53 @@
+uniform sampler2D Texture;
+
+//ambient light
+uniform vec3 AmbientLight;
+//directional light
+uniform vec3 DirectionalLight;
+//direction light direction
+uniform vec3 DirectionalLightVec;
+
+varying vec3 vFragmentNormal;
+varying vec4 vPosition;
+
+
+
+void main ()
+{
+
+vec4 position = vPosition;
+
+position.xyz = position.xyz / position.w;
+position.xyz = (position.xyz * 0.5) + 0.5;
+
+// normalize the vertex normal
+vec3 N = normalize(vFragmentNormal);
+vec3 directionalVec = -(normalize(DirectionalLightVec));
+
+float NdotDirectional = clamp(dot(N,directionalVec),0.0,1.0);
+
+// pre declare the colour contribution values
+vec4 ambient;
+vec4 diffuse;
+vec4 specular;
+vec4 emissive;
+vec4 directional;
+
+ambient = gl_FrontMaterial.ambient * vec4(AmbientLight,1.0);
+diffuse = gl_FrontMaterial.diffuse;
+specular = gl_FrontMaterial.specular;
+emissive = gl_FrontMaterial.emission;
+directional = diffuse * (NdotDirectional * vec4(DirectionalLight,1.0));
+
+vec4 constant = clamp(ambient+directional+emissive,0.0,1.0);
+
+// finally set the fragdata
+gl_FragData[0] = constant;
+
+//store depth with 1-z/w      http://mynameismjp.wordpress.com/2010/03/22/attack-of-the-depth-buffer/    (http://forum.beyond3d.com/showthread.php?t=52049)
+//NEED TO DECODE
+gl_FragData[1] = vec4((N.xyz*0.5)+0.5,1.0-position.z);
+gl_FragData[2] = diffuse;
+gl_FragData[3] = specular;
+}
+

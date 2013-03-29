@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$_frame_buffer_object_8h.html" title="interface for the FrameBufferObject class" alt="" coords="96,166,237,197"/>
+<area shape="rect" id="node11" href="$_texture_manager_8h.html" title="file contaioning TextureManager" alt="" coords="295,86,420,117"/>
+<area shape="rect" id="node21" href="$_screen_quad_8h.html" title="file containing ScreenQuad" alt="" coords="524,86,628,117"/>
+<area shape="rect" id="node27" href="$_effect_8h.html" title="file containing the Effect class" alt="" coords="5,166,72,197"/>
+<area shape="rect" id="node17" href="$_texture_8h.html" title="interface for a GL Texture" alt="" coords="312,166,387,197"/>
+</map>

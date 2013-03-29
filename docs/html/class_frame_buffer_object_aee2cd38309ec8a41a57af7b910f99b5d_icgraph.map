@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_g_l_window.html#a6b00f7cbee6dbba1bbd667bd6160e3b0" title="geometry for main gbuffer" alt="" coords="440,5,613,35"/>
+<area shape="rect" id="node7" href="$class_g_l_window.html#a6b9eeac15141cd01e99f89209654e86d" title="accumulate light onto our pixels" alt="" coords="429,58,624,89"/>
+<area shape="rect" id="node10" href="$class_g_l_window.html#a0f7d182189c32d342f7fa2fe86a41946" title="shadow pass for our shadowspot" alt="" coords="217,107,380,138"/>
+<area shape="rect" id="node12" href="$class_post_processor.html#a6e904f5208a57571604a58ae70e4c431" title="start the postprocess chain" alt="" coords="228,161,369,191"/>
+<area shape="rect" id="node5" href="$class_g_l_window.html#a9bd2503dd5f812c10a9481f22ecd3403" title="this is the main gl drawing routine" alt="" coords="672,58,808,89"/>
+<area shape="rect" id="node14" href="$class_g_l_window.html#a6245dfad71c8ea6c279ef11feb740335" title="run the post processing chain" alt="" coords="445,135,608,166"/>
+</map>

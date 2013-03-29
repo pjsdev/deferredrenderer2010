@@ -1,0 +1,169 @@
+#include "Scene.h"
+#include "string"
+#include "ngl/TransformStack.h"
+#include "ngl/VBOPrimitives.h"
+#include "ngl/ShaderManager.h"
+#include "ngl/Material.h"
+
+
+Scene::Scene()
+{
+
+}
+
+Scene::~Scene()
+{
+
+}
+
+void Scene::draw(const std::string &_shaderName, ngl::TransformStack &_transformStack)
+{
+    ngl::ShaderManager *shader = ngl::ShaderManager::instance();
+    ngl::VBOPrimitives *prim = ngl::VBOPrimitives::instance();
+
+    ngl::Material m(ngl::GOLD);
+    m.use();
+
+    _transformStack.pushTransform();
+    {
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("teapot");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(-3,0.0,0.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("sphere");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    m.change(ngl::SILVER);
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(3,0.0,0.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("cylinder");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(0.0,0.0,3.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("cube");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    m.change(ngl::COPPER);
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(-3.0,0.0,3.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("torus");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(3.0,0.5,3.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("icosahedron");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    m.change(ngl::BLACKPLASTIC);
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(0.0,0.0,-3.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("cone");
+    } // and before a pop
+    _transformStack.popTransform();
+
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(-3.0,0.5,-3.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("tetrahedron");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    m.change(ngl::PEWTER);
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(3.0,0.5,-3.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("octahedron");
+    } // and before a pop
+    _transformStack.popTransform();
+
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(0.0,0.5,-6.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("football");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    m.change(ngl::BLACKPLASTIC);
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(-3.0,0.5,-6.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("disk");
+    } // and before a pop
+    _transformStack.popTransform();
+
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(3.0,0.5,-6.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("dodecahedron");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    //try TEXTURE!
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(-5.0,-0.5,0.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("Helix");
+    } // and before a pop
+    _transformStack.popTransform();
+
+    m.change(ngl::GOLD);
+
+    _transformStack.pushTransform();
+    {
+      _transformStack.getCurrentTransform().setPosition(ngl::Vector(0.0,-0.5,0.0));
+      shader->setShaderParamFromMatrix(_shaderName,"ModelMatrix",_transformStack.getCurrAndGlobal().getMatrix());
+      prim->draw("plane");
+    } // and before a pop
+    _transformStack.popTransform();
+}
+
+void Scene::init()
+{
+    ngl::VBOPrimitives *prim = ngl::VBOPrimitives::instance();
+    prim->createVBOSphere("sphere", 1.0, 40);
+    prim->createVBOCylinder("cylinder",0.5,1.4,50,50);
+    prim->createVBOCone("cone",0.5,1.4,20,20);
+
+    prim->createVBODisk("disk",0.5,120);
+    prim->createVBOQuadPlane("plane",20,20,80,80,ngl::Vector(0,1,0));
+    prim->createVBOTorus("torus",0.15,0.4,20,20);
+    prim->loadBinaryVBO("Helix","models/Helix.tnv",GL_TRIANGLES);
+
+    std::cout << "Scene Created" << std::endl;
+}

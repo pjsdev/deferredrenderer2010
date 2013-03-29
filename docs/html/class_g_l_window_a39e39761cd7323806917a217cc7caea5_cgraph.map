@@ -1,0 +1,26 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_lighting_manager.html#a52a5ae86c455adac6a40a6fdb8824f0d" title="add point light by object" alt="" coords="231,5,433,35"/>
+<area shape="rect" id="node5" href="$class_lighting_manager.html#a2b8c8d05090f494c798f6f85b6c2b9a3" title="add shadowspot light by object" alt="" coords="223,58,441,89"/>
+<area shape="rect" id="node7" href="$class_frame_buffer_object.html#ac4addd06c2efb40175c0b3cb515c2174" title="bind a texture id to an FBO color attachment" alt="" coords="217,111,447,142"/>
+<area shape="rect" id="node9" href="$class_frame_buffer_object.html#aecbe17789eb2cfed45b88ced0a809693" title="this method creates the fbo render targets and the glFBO itself" alt="" coords="245,165,419,195"/>
+<area shape="rect" id="node13" href="$class_lighting_manager.html#a3266bfd3bc87306dd085963f1dff3ef6" title="init the light geometry for rasterizing" alt="" coords="209,218,455,249"/>
+<area shape="rect" id="node15" href="$class_g_l_window.html#a2d39a2769615cc0a6b606320c53a1123" title="construct the geometry once for our screen quad" alt="" coords="233,271,431,302"/>
+<area shape="rect" id="node17" href="$class_frustum.html#abeca2d18ad72313d7fbef39c2cf037f0" title="method to generate the frustum from a projView matrix" alt="" coords="269,325,395,355"/>
+<area shape="rect" id="node23" href="$class_texture_manager.html#a2b773dbc1a105ebf2ff4df0a393ee352" title="get texture ID by" alt="" coords="765,427,960,458"/>
+<area shape="rect" id="node25" href="$class_g_l_window.html#afc55545a0f46ff736612542924c4d775" title="setup the post processor chain" alt="" coords="233,479,431,510"/>
+<area shape="rect" id="node37" href="$class_g_l_window.html#a76409523ee63f8a821e5c35a457b9f7b" title="setup our application shaders" alt="" coords="247,583,417,614"/>
+<area shape="rect" id="node41" href="$class_g_l_window.html#a21a7c28a52762b5b4c8862d40cad6e59" title="setup our applictaion textures" alt="" coords="245,739,419,770"/>
+<area shape="rect" id="node11" href="$class_frame_buffer_object.html#a8940aeceab34ae4a9418b5a1d0aa6cd1" title="errors check this FBO" alt="" coords="505,165,716,195"/>
+<area shape="rect" id="node19" href="$class_frustum.html#a3c514a0880e09ae6df9632dbbfd46543" title="build a plane" alt="" coords="543,325,679,355"/>
+<area shape="rect" id="node21" href="$class_frustum.html#a7c18fdcda4bd3684ac1ef9b7903ddb4d" title="normalise the plane" alt="" coords="780,325,945,355"/>
+<area shape="rect" id="node27" href="$class_post_processor.html#a3bb9b2c72ece1cc7225303521d4266cc" title="add a user effect to the post process chain" alt="" coords="777,505,948,535"/>
+<area shape="rect" id="node29" href="$class_effect.html#a9c82db7d20957d8e615e43b70ff0ce90" title="add a source texture to samples from" alt="" coords="777,570,948,601"/>
+<area shape="rect" id="node31" href="$class_g_l_window.html#a107fd8a9aae7882a2f4b522269946def" title="stub for common setup of effect" alt="" coords="512,479,709,510"/>
+<area shape="rect" id="node39" href="$class_g_l_window.html#ad347131fb3ba77fc66af9293bfaff36c" title="a helper function for generating ngl shaders" alt="" coords="535,634,687,665"/>
+<area shape="rect" id="node43" href="$class_texture_manager.html#a91b3cf59792b9763ebb3fabe771dc940" title="add empty rgba texture" alt="" coords="520,791,701,822"/>
+<area shape="rect" id="node45" href="$class_texture_manager.html#a697cae0804a775bc694ff143febeca58" title="add a texture object" alt="" coords="769,741,956,771"/>
+<area shape="rect" id="node49" href="$class_texture.html#a753532e225cf6aecafcf1e628e302e2f" title="generate empty RGBA" alt="" coords="783,818,943,849"/>
+<area shape="rect" id="node51" href="$class_texture_manager.html#a7a8f45aa0f3a12252feb97e74e9c0b0e" title="add empty float texture" alt="" coords="519,687,703,718"/>
+<area shape="rect" id="node47" href="$class_texture.html#a352ad6a6a3e6d7a7226d95b7612e5d24" title="get the texture by name" alt="" coords="1008,741,1133,771"/>
+<area shape="rect" id="node54" href="$class_texture.html#a70d256a139b0e9fe1ed631dbf1fe9d50" title="generate empty RGAB (32bit float)" alt="" coords="781,687,944,718"/>
+</map>

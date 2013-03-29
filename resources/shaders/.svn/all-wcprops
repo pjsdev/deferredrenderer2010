@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/pjslib/!svn/ver/5/CGITech/shaders
+END
+ScreenQuad.fs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/pjslib/!svn/ver/5/CGITech/shaders/ScreenQuad.fs
+END
+ScreenQuad.vs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/pjslib/!svn/ver/5/CGITech/shaders/ScreenQuad.vs
+END
+Gbuffer.fs
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/pjslib/!svn/ver/6/CGITech/shaders/Gbuffer.fs
+END
+Gbuffer.vs
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/pjslib/!svn/ver/6/CGITech/shaders/Gbuffer.vs
+END
+PointLight.fs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/pjslib/!svn/ver/5/CGITech/shaders/PointLight.fs
+END
+PointLight.vs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/pjslib/!svn/ver/5/CGITech/shaders/PointLight.vs
+END

@@ -1,0 +1,27 @@
+/// @brief our projection matrix generated from the Camera
+uniform mat4 ProjectionMatrix;
+/// @brief our ViewMatrix generated from the Camera
+uniform mat4 ViewMatrix;
+/// @brief our ModelMatrix generated from our transforms
+uniform mat4 ModelMatrix;
+
+uniform vec4 uCentreRadius;
+
+attribute vec3 aVertexPosition;
+
+//pixel pos xy intensity z
+varying vec4 vProjSpacePos;
+varying mat4 vProjView;
+varying vec4 vCentreRadius;
+
+
+void main(void)
+{
+    gl_Position = ProjectionMatrix*ViewMatrix * ModelMatrix * vec4(aVertexPosition, 1.0);
+    vProjSpacePos = gl_Position;
+    vProjView = ProjectionMatrix*ViewMatrix;
+
+    vec4 centre = ModelMatrix * vec4(uCentreRadius.xyz, 1.0);
+
+    vCentreRadius = vec4(centre.xyz, uCentreRadius.w);
+}

@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$_g_l_window_8h.html" title="main workhorse of the application" alt="" coords="609,86,703,117"/>
+<area shape="rect" id="node7" href="$_effect_8h.html" title="file containing the Effect class" alt="" coords="32,246,99,277"/>
+<area shape="rect" id="node15" href="$_post_processor_8h.html" title="file containgin PostProcessor interface" alt="" coords="275,166,392,197"/>
+<area shape="rect" id="node17" href="$_frame_buffer_object_8h.html" title="interface for the FrameBufferObject class" alt="" coords="123,246,264,277"/>
+<area shape="rect" id="node22" href="$_texture_manager_8h.html" title="file contaioning TextureManager" alt="" coords="517,246,643,277"/>
+<area shape="rect" id="node32" href="$_screen_quad_8h.html" title="file containing ScreenQuad" alt="" coords="288,246,392,277"/>
+<area shape="rect" id="node47" href="$_frustum_8h.html" title="interface for Frustum class" alt="" coords="965,166,1045,197"/>
+<area shape="rect" id="node52" href="$_lighting_manager_8h.html" title="LightingManager.h" alt="" coords="592,166,720,197"/>
+<area shape="rect" id="node28" href="$_texture_8h.html" title="interface for a GL Texture" alt="" coords="657,326,732,357"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_post_processor.html#a445bb97f92ec17ebea6aab1cacdae848" title="explcict call to invoke effect" alt="" coords="220,85,383,115"/>
+<area shape="rect" id="node11" href="$class_post_processor.html#a7657501677cd154cbb8ec28f1f7cac9f" title="end the postprocessor" alt="" coords="228,165,375,195"/>
+<area shape="rect" id="node15" href="$class_post_processor.html#a6e904f5208a57571604a58ae70e4c431" title="start the postprocess chain" alt="" coords="231,218,372,249"/>
+<area shape="rect" id="node5" href="$class_frame_buffer_object.html#ad5fb62e46970c0f264941a58a33a53c7" title="acivate a render target of your choice, starting from 0" alt="" coords="436,5,657,35"/>
+<area shape="rect" id="node7" href="$class_frame_buffer_object.html#ac4addd06c2efb40175c0b3cb515c2174" title="bind a texture id to an FBO color attachment" alt="" coords="432,58,661,89"/>
+<area shape="rect" id="node9" href="$class_screen_quad.html#a5471105545cef6596311a9b55d218ec9" title="draw the quad" alt="" coords="483,111,611,142"/>
+<area shape="rect" id="node13" href="$class_frame_buffer_object.html#acfac55df0d351f216e7dc91d633f0f7f" title="make the default (screen) FBO active" alt="" coords="459,165,635,195"/>
+<area shape="rect" id="node17" href="$class_frame_buffer_object.html#aee2cd38309ec8a41a57af7b910f99b5d" title="make this FBO the active one for drawing" alt="" coords="465,218,628,249"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_g_l_window.html#a126c8861e80c340cabd4f6bfbc3de28d" title="debug pass for drawing our debug quads" alt="" coords="403,5,557,35"/>
+<area shape="rect" id="node5" href="$class_g_l_window.html#a9bd2503dd5f812c10a9481f22ecd3403" title="this is the main gl drawing routine" alt="" coords="611,57,747,87"/>
+<area shape="rect" id="node7" href="$class_post_processor.html#a445bb97f92ec17ebea6aab1cacdae848" title="explcict call to invoke effect" alt="" coords="185,109,348,139"/>
+<area shape="rect" id="node9" href="$class_g_l_window.html#a6245dfad71c8ea6c279ef11feb740335" title="run the post processing chain" alt="" coords="399,109,561,139"/>
+</map>

@@ -1,0 +1,325 @@
+#include "GLWindow.h"
+#include <iostream>
+#include "ngl/Vector.h"
+#include "ngl/Light.h"
+#include "ngl/NGLInit.h"
+#include "ngl/ShaderManager.h"
+#include "FrameBufferObject.h"
+#include "ScreenQuad.h"
+
+//----------------------------------------------------------------------------------------------------------------------
+GLWindow::GLWindow(
+                   QWidget *_parent
+                  ) :
+                    QGLWidget(_parent),
+                    m_viewportQuad(0.0f, 0.0f, 0.5f, 1.0f),
+                    m_debugQuad1(-0.75,-0.8,0.0,0.2),
+                    m_debugQuad2(-0.25,-0.8,0.0,0.2),
+                    m_debugQuad3(0.25,-0.8,0.0,0.2),
+                    m_debugQuad4(0.75,-0.8,0.0,0.2),
+                    m_pl(0.0,0.0,1.0,10.0, ngl::Vector(1.4,0.4,0.2)),
+                    m_fbo(1024, 768, "Test"),
+                    m_cam(ngl::Vector(0,2,7),ngl::Vector(0,0,0),ngl::Vector(0,1,0), ngl::PERSPECTIVE)
+{
+
+  // set this widget to have the initial keyboard focus
+  setFocus();
+  // re-size the widget to that of the parent (in this case the GLFrame passed in on construction)
+  this->resize(1024,768);
+
+  m_rotate=false;
+  // mouse rotation values set to 0
+  m_spinXFace=0;
+  m_spinYFace=0;
+
+  m_wireframe = false;
+
+}
+
+// This virtual function is called once before the first call to paintGL() or resizeGL(),
+//and then once whenever the widget has been assigned a new QGLContext.
+// This function should set up any required OpenGL context rendering flags, defining display lists, etc.
+
+//----------------------------------------------------------------------------------------------------------------------
+void GLWindow::initializeGL()
+{
+
+  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+  // enable depth testing for drawing
+  glEnable(GL_DEPTH_TEST);
+
+  //init ngl
+  ngl::NGLInit *init = ngl::NGLInit::instance();
+  init->initGlew();
+  init->initVBO();
+
+  m_cam.setShape(45,float(1024/768),0.1,300,ngl::PERSPECTIVE);
+
+  //init shaders
+  setupShaders();
+
+  this->resize(1024,768);
+
+  m_scene.init();
+
+  m_viewportQuad.generateVAO();
+  m_debugQuad1.generateVAO();
+  m_debugQuad2.generateVAO();
+  m_debugQuad3.generateVAO();
+  m_debugQuad4.generateVAO();
+
+  m_pl.generateVAO();
+
+  m_fbo.create();
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//This virtual function is called whenever the widget has been resized.
+// The new size is passed in width and height.
+void GLWindow::resizeGL(
+                        int _w,
+                        int _h
+                       )
+{
+
+}
+
+
+void GLWindow::geometryPass()
+{
+    m_fbo.bind();
+    {
+      m_fbo.activateAllTargets();
+
+      glClearColor(0.f, 0.f, 0.f, 1.0f);
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      ngl::Transformation trans;
+      trans.setRotation(m_spinXFace,m_spinYFace,0);
+      // set this in the TX stack
+      m_transformStack.setGlobal(trans);
+
+      m_scene.draw("Gbuffer", m_transformStack);
+      glDrawBuffers(0,0);
+    }
+    m_fbo.unbind();
+
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void GLWindow::debugPass()
+{
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color1);
+    m_debugQuad1.draw("ScreenQuad");
+    glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color2);
+    m_debugQuad2.draw("ScreenQuad");
+    glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color3);
+    m_debugQuad3.draw("ScreenQuad");
+    glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color4);
+    m_debugQuad4.draw("ScreenQuad");
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void GLWindow::lightAccumulation()
+{
+
+    ngl::ShaderManager *shader = ngl::ShaderManager::instance();
+
+    //normal
+    glActiveTexture(GL_TEXTURE0);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color2);
+    shader->setShaderParam1i("PointLight","Normal",0);
+
+    //albedo
+    glActiveTexture(GL_TEXTURE1);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color3);
+    shader->setShaderParam1i("PointLight","Albedo",1);
+
+    //specular
+    glActiveTexture(GL_TEXTURE2);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color4);
+    shader->setShaderParam1i("PointLight","Specular",2);
+
+    m_fbo.bind();
+    {
+      m_fbo.activateTarget1();
+
+      glClearColor(0.f, 0.f, 0.f, 1.0f);
+      glEnable(GL_BLEND);
+      glBlendFunc(GL_ONE,GL_ONE);
+
+      ngl::Transformation t;
+      t.setPosition(m_pl.m_pos.m_x,m_pl.m_pos.m_y,m_pl.m_pos.m_z);
+
+      shader->setShaderParamFromMatrix("PointLight", "ModelMatrix", t.getMatrix());
+      m_pl.draw();
+    }
+    m_fbo.unbind();
+
+    glDisable(GL_BLEND);
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+//This virtual function is called whenever the widget needs to be painted.
+// this is our main drawing routine
+void GLWindow::paintGL()
+{
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glDisable(GL_BLEND);
+
+  if(m_wireframe)
+  {
+      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+  }
+  else
+  {
+      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+  }
+
+  ngl::ShaderManager *shader = ngl::ShaderManager::instance();
+
+
+  //Gpass
+  (*shader)["Gbuffer"]->use();
+
+  shader->setShaderParam3f("Gbuffer","AmbientLight",0.7,0.7,0.5);
+  shader->setShaderParam3f("Gbuffer","DirectionalLightVec",-1.0,0.0,0.0);
+  shader->setShaderParam3f("Gbuffer","DirectionalLight",0.7,0.7,0.5);
+  geometryPass();
+
+  //debug gpass
+  (*shader)["ScreenQuad"]->use();
+  debugPass();
+
+  //light accumulation
+  (*shader)["PointLight"]->use();
+  lightAccumulation();
+
+  (*shader)["ScreenQuad"]->use();
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, m_fbo.m_Color1);
+  m_viewportQuad.draw("ScreenQuad");
+  //glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void GLWindow::setupShaders()
+{
+    ngl::ShaderManager *shader = ngl::ShaderManager::instance();
+
+    //create shader program
+    shader->createShaderProgram("ScreenQuad");
+    //load shader sources
+    shader->attachShader("vertex", ngl::VERTEX);
+    shader->attachShader("fragment", ngl::FRAGMENT);
+    shader->loadShaderSource("vertex", "shaders/ScreenQuad.vs");
+    shader->loadShaderSource("fragment", "shaders/ScreenQuad.fs");
+    //compile
+    shader->compileShader("vertex");
+    shader->compileShader("fragment");
+    //link
+    shader->attachShaderToProgram("ScreenQuad", "vertex");
+    shader->attachShaderToProgram("ScreenQuad", "fragment");
+
+    shader->bindAttribute("ScreenQuad",0,"aVertexPosition");
+    shader->bindAttribute("ScreenQuad",1,"aTextureCoord");
+
+    shader->linkProgramObject("ScreenQuad");
+    //use
+    (*shader)["ScreenQuad"]->use();
+
+    //create shader program
+    shader->createShaderProgram("Gbuffer");
+    //load shader sources
+    shader->attachShader("vertex", ngl::VERTEX);
+    shader->attachShader("fragment", ngl::FRAGMENT);
+    shader->loadShaderSource("vertex", "shaders/Gbuffer.vs");
+    shader->loadShaderSource("fragment", "shaders/Gbuffer.fs");
+    //compile
+    shader->compileShader("vertex");
+    shader->compileShader("fragment");
+    //link
+    shader->attachShaderToProgram("Gbuffer", "vertex");
+    shader->attachShaderToProgram("Gbuffer", "fragment");
+    shader->linkProgramObject("Gbuffer");
+    //use
+    (*shader)["Gbuffer"]->use();
+    shader->setShaderParamFromMatrix("Gbuffer", "ProjectionMatrix",m_cam.getProjection());
+    shader->setShaderParamFromMatrix("Gbuffer", "ViewMatrix",m_cam.getModelView());
+
+
+    shader->createShaderProgram("PointLight");
+    //load shader sources
+    shader->attachShader("plVertex", ngl::VERTEX);
+    shader->attachShader("plFragment", ngl::FRAGMENT);
+    shader->loadShaderSource("plVertex", "shaders/PointLight.vs");
+    shader->loadShaderSource("plFragment", "shaders/PointLight.fs");
+    //compile
+    shader->compileShader("plVertex");
+    shader->compileShader("plFragment");
+    //link
+    shader->attachShaderToProgram("PointLight", "plVertex");
+    shader->attachShaderToProgram("PointLight", "plFragment");
+
+    shader->bindAttribute("PointLight",0,"aVertexPosition");
+
+    shader->linkProgramObject("PointLight");
+    //use
+    (*shader)["PointLight"]->use();
+    shader->setShaderParamFromMatrix("PointLight", "ProjectionMatrix",m_cam.getProjection());
+    shader->setShaderParamFromMatrix("PointLight", "ViewMatrix",m_cam.getModelView());
+
+}
+
+void GLWindow::toggleWireframe(bool _mode)
+{
+    m_wireframe = _mode;
+    updateGL();
+}
+
+void GLWindow::mouseMoveEvent (
+                               QMouseEvent * _event
+                              )
+{
+  if(m_rotate && _event->buttons() == Qt::LeftButton)
+  {
+    m_spinYFace = ( m_spinYFace + (_event->x() - m_origX) ) % 360 ;
+    m_spinXFace = ( m_spinXFace + (_event->y() - m_origY) ) % 360 ;
+    m_origX = _event->x();
+    m_origY = _event->y();
+  }
+  // re-draw GL
+  updateGL();
+}
+
+
+//----------------------------------------------------------------------------------------------------------------------
+void GLWindow::mousePressEvent (
+                                QMouseEvent * _event
+                               )
+{
+  if(_event->button() == Qt::LeftButton)
+  {
+    m_origX = _event->x();
+    m_origY = _event->y();
+    m_rotate =true;
+  }
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+void GLWindow::mouseReleaseEvent (
+                                  QMouseEvent * _event
+                                 )
+{
+  if (_event->button() == Qt::LeftButton)
+  {
+    m_rotate=false;
+  }
+}
+

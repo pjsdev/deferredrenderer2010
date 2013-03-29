@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_texture_manager.html#a697cae0804a775bc694ff143febeca58" title="add a texture object" alt="" coords="179,57,365,87"/>
+<area shape="rect" id="node5" href="$class_texture_manager.html#a91b3cf59792b9763ebb3fabe771dc940" title="add empty rgba texture" alt="" coords="416,5,597,35"/>
+<area shape="rect" id="node7" href="$class_g_l_window.html#a21a7c28a52762b5b4c8862d40cad6e59" title="setup our applictaion textures" alt="" coords="648,57,821,87"/>
+<area shape="rect" id="node11" href="$class_texture_manager.html#a7a8f45aa0f3a12252feb97e74e9c0b0e" title="add empty float texture" alt="" coords="415,109,599,139"/>
+<area shape="rect" id="node9" href="$class_g_l_window.html#a39e39761cd7323806917a217cc7caea5" title="called upon creating GLWindow, setup for Glew and other scene elements" alt="" coords="869,57,1024,87"/>
+</map>

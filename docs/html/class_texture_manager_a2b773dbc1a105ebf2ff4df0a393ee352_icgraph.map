@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_g_l_window.html#a107fd8a9aae7882a2f4b522269946def" title="stub for common setup of effect" alt="" coords="249,5,447,35"/>
+<area shape="rect" id="node5" href="$class_g_l_window.html#afc55545a0f46ff736612542924c4d775" title="setup the post processor chain" alt="" coords="497,55,695,86"/>
+<area shape="rect" id="node7" href="$class_g_l_window.html#a39e39761cd7323806917a217cc7caea5" title="called upon creating GLWindow, setup for Glew and other scene elements" alt="" coords="744,82,899,113"/>
+<area shape="rect" id="node11" href="$class_g_l_window.html#a7767e4da4b742da02705a5c71ca2a9f4" title="the mode for the main screen quad, binds our render targets to it" alt="" coords="259,159,437,190"/>
+</map>
